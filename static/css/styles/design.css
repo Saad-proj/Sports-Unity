@@ -1,0 +1,66 @@
+@import 'utilities.css';
+:root{
+    --dark:#161616;
+    --pure:#FFFFFF;
+    --ternary:#898989;
+    --light:#F2F2F2;
+}
+*{
+    padding:0 ;
+    margin:0;
+    box-sizing:border-box;
+    -webkit-font-smotthing:antialiased;
+}
+
+
+
+.hero .left img{
+    width: 400px;
+}
+.hero .right{
+    margin-top:-7rem;
+    color: var(--pure);
+}
+.hero .right h6{
+    font-size: 1.6rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+.hero .right h1{
+    font-size: 4rem;
+    font-weight: 100;
+    line-height:1.2;
+    margin-bottom: 2rem;
+    color: #000;
+}
+.hero .right h1 span{
+    color: #000;
+}
+.hero .right p{
+    line-height: 5;
+    font-size:3rem;
+    margin-bottom: 2rem;
+    color: #000;
+}
+.hero{
+    padding:3rem 0;
+}
+
+
+
+
+@media only screen and (max-width: 800px) {
+    .left .right{
+        padding: 1rem 1rem;
+        margin: 1rem 1rem;
+        text-align: center;
+    }
+    .branding,  .links , .after_btn{
+        margin: 2rem 2rem;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .trans_cls > h1{
+        font-size: 3.8rem;
+    }
+}

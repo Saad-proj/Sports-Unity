@@ -1,0 +1,27 @@
+
+<h1>Notifications</h1>
+<ul>
+    {% for notification in notifications %}
+    <div>
+        {% if notification.event %}
+            <a href="{% url 'event_detail' notification.event.id %}">
+                Event: {{ notification.event.title }}
+            </a>
+        {% elif notification.match %}
+            <a href="#">
+                Match: {{ notification.match.team1.name }} vs {{ notification.match.team2.name }}
+            </a>
+        {% elif notification.notice %}
+            <a href="#">
+                Notice: {{ notification.notice.title }}
+            </a>
+        {% elif notification.result %}
+            <a href="#">
+                Result: {{ notification.result }}
+            </a>
+        {% endif %}
+    </div>
+{% endfor %}
+
+</ul>
+

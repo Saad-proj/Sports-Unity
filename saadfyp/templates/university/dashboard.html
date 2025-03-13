@@ -1,0 +1,14 @@
+<!-- university/templates/university/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Welcome to {{ university.name }}</h2>
+    <p>{{ university.description }}</p>
+    <p>Location: {{ university.location }}</p>
+    <p>Established Year: {{ university.established_year }}</p>
+    <p><img src="{{ university.image_url }}" alt="{{ university.name }}"></p>
+</body>
+</html>

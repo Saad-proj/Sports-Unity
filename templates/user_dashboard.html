@@ -1,0 +1,512 @@
+{% comment %} <!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+ 
+  <link rel="stylesheet" href="{% static 'css/maicons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+  <link rel="stylesheet" href="{% static 'DataTables/datatables.min.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/design.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/utilities.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Open+Sans">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>User Dashboard</h1>
+    <p><strong>Username:</strong> {{ username }}</p>
+
+    <h3>Booked Events</h3>
+    <ul>
+      {% for booking in booked_events %}
+        <li>{{ booking.event.title }} - {{ booking.status }}</li>
+      {% empty %}
+        <li>No booked events found.</li>
+      {% endfor %}
+    </ul>
+
+    <h3>Stall Bookings</h3>
+    <ul>
+      {% for stall in stall_bookings %}
+        <li>{{ stall.stall.title }} - {{ stall.status }}</li>
+      {% empty %}
+        <li>No stall bookings found.</li>
+      {% endfor %}
+    </ul>
+
+    <h3>University List</h3>
+    <ul>
+      {% for uni in universities %}
+        <li>{{ uni.name }} ({{ uni.location }})</li>
+      {% empty %}
+        <li>No universities found.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+ {% load static %}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>{% block title %}Sports Unity{% endblock %}</title>
+ 
+   <link rel="stylesheet" href="{% static 'css/maicons.css' %}">
+   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+   <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.css' %}">
+   <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}">
+   <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+   <link rel="stylesheet" href="{% static 'DataTables/datatables.min.css' %}">
+   <link rel="stylesheet" href="{% static 'styles/design.css' %}">
+   <link rel="stylesheet" href="{% static 'styles/utilities.css' %}">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Open+Sans">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+   <!-- <link rel="stylesheet" href="{% static 'scripts/index.js' %}"> -->
+   <style>
+     
+     .logo-container {
+         display: flex;
+         align-items: center;
+     }
+     .logo {
+         width: 110px; /* Adjust the width as needed */
+         height: auto;
+         margin-right: 10px; /* Adjust the spacing between the logo and text */
+     }
+     .text-primary {
+         color: blue; /* Adjust the color as needed */
+     }
+     table {
+             width: 100%;
+             border-collapse: collapse;
+         }
+         th, td {
+             padding: 10px;
+             border: 1px solid #ddd;
+             text-align: center;
+         }
+         th {
+             background-color: #f2f2f2;
+         }
+ 
+       .container  h1 {
+             text-align: center;
+         }
+                     /* Apply a green underline on hover */
+ .nav-link:hover {
+     color: #00D9A5; /* Optional: Change the color on hover */
+     text-decoration: underline;
+     text-decoration-color: #00D9A5;
+     text-underline-offset: 4px; /* Adjust underline position */
+     
+ }
+ 
+ /* Active menu item styling */
+ .nav-item.active .nav-link {
+     color: #00D9A5;
+ }
+ .btn-login{
+     background-color: #00d9a5;
+    
+   }
+   .btn {
+   margin-top: 20px; /* Add some space above the button */
+ }
+ .btn-color{
+    
+    background-color: #00d9a5;
+  }
+
+  .status-confirmed {
+    color: green;
+    font-weight: bold;
+  }
+  .status-pending {
+    color: goldenrod;
+    font-weight: bold;
+  }
+  .status-cancelled {
+    color: red;
+    font-weight: bold;
+  }
+  .card-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .card {
+    flex: 1;
+    max-width: 300px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul li {
+    padding: 5px 0;
+  }
+
+  .text-success1{
+color: #00d9a5;
+  }
+  .text-warning1{
+    color: #270ef7;
+  }
+   </style>
+ </head>
+ 
+ <body>
+   
+  
+   <div class="back-to-top"></div>
+ 
+ 
+   <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+     <div class="container">
+   
+      <div class="logo-container">
+        <img src="{% static 'img/logo2.png' %}" alt="Logo" class="logo">
+        <span class="text-primary">Sports </span>Unity
+    </div>
+   
+   
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+   
+       <div class="collapse navbar-collapse" id="navbarSupport">
+         <ul class="navbar-nav ml-auto">
+           <li class="nav-item active">
+               <a class="nav-link" href="{% url 'home' %}">Home</a>
+           </li>
+           <li class="nav-item">
+               <a class="nav-link" href="{% url 'about' %}">About Us</a>
+           </li>
+           <!-- <li class="nav-item">
+               <a class="nav-link" href="{% url 'university_registration' %}">university</a>
+           </li> -->
+           <!-- <li class="nav-item">
+            <a class="nav-link" href="{% url 'event_calendar' %}">Schedule</a> 
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'player_list' %}">players</a> 
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'notice_list' %}">Notices</a>       
+    </li>
+           <li class="nav-item">
+             <a class="nav-link" href="{% url 'event_list' %}">Events</a>
+         </li>
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'results' %}">Results</a>
+      </li>
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'tournament_standings' %}">Tournament</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'stall_list' %}">Stalls</a>
+    </li>
+           
+        
+      
+         <!-- If the user is not logged in, display the login button -->
+         <li class="nav-item">
+          {% if user.is_authenticated %}
+              <a class="btn btn-login ml-lg-3" href="{% url 'logout' %}" style="
+    margin-top: -5px;">Logout</a>
+          {% else %}
+              <a class="btn btn-primary ml-lg-3" href="{% url 'user_login' %}" style="
+    margin-top: -5px;">Login / Register</a>
+          {% endif %}
+      </li>
+      
+ 
+       </ul>
+     </div> <!-- .navbar-collapse -->
+     
+     </div> <!-- .container -->
+   </nav>
+   
+ 
+  
+   <div class="page-section banner-home bg-image" style="background-image: url({% static 'img/bg_image_1.jpg' %});">
+     <div class="banner-section">
+       <div class="container text-center wow fadeInUp">
+         <nav aria-label="Breadcrumb">
+           <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+          
+           </ol>
+         </nav>
+        
+       </div> <!-- .container -->
+     </div> <!-- .banner-section -->
+   </div> <!-- .page-banner -->
+ 
+   <div class="container mt-5">
+    <h1 class="mb-4 text-center">User Dashboard</h1>
+    <h3 class="text-center"><strong>Welcome {{ username }}</strong></h3>
+  
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">Total Events Booked</h5>
+            <p class="card-text display-4">{{ total_events }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cancelled Events</h5>
+            <p class="card-text display-4 text-danger">{{ cancelled_events }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">Pending Events</h5>
+            <p class="card-text display-4 text-warning">{{ pending_events }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">Confirmed Events</h5>
+            <p class="card-text display-4 text-success">{{ confirmed_events }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Event Details Cards in One Row -->
+    <div class="row">
+      <!-- Booked Events -->
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-center">Booked Events</h5>
+            <ul class="list-group">
+              {% for booking in booked_events %}
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="me-2" style="flex-grow: 1;">{{ booking.event.title }}</div>
+                  <span class="badge status-badge 
+                    {% if booking.status == 'Confirmed' %} confirmed 
+                    {% elif booking.status == 'Pending' %} pending 
+                    {% elif booking.status == 'Cancelled' %} cancelled 
+                    {% endif %}
+                  ">{{ booking.status }}</span>
+                </li>
+              {% empty %}
+                <li class="list-group-item">No booked events found.</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Stall Bookings -->
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-center">Stall Bookings</h5>
+            <ul class="list-group">
+              {% for stall in stall_bookings %}
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="me-2" style="flex-grow: 1;">{{ stall.stall.title }}</div>
+                  <span class="badge status-badge 
+                    {% if stall.status == 'Confirmed' %} confirmed 
+                    {% elif stall.status == 'Pending' %} pending 
+                    {% elif stall.status == 'Cancelled' %} cancelled 
+                    {% endif %}
+                  ">{{ stall.status }}</span>
+                </li>
+              {% empty %}
+                <li class="list-group-item">No stall bookings found.</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Event Registration Requests -->
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-center">Event Registration Requests</h5>
+            <ul class="list-group">
+              {% for registration in registrations %}
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="me-2" style="flex-grow: 1;">{{ registration.event.title }}</div>
+                  <span class="badge status-badge 
+                    {% if registration.status == 'Confirmed' %} confirmed 
+                    {% elif registration.status == 'Pending' %} pending 
+                    {% elif registration.status == 'Cancelled' %} cancelled 
+                    {% endif %}
+                  ">{{ registration.status }}</span>
+                </li>
+              {% empty %}
+                <li class="list-group-item">No registration requests found.</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Custom CSS -->
+  <style>
+    .status-badge {
+      font-size: 0.9rem;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  
+    /* Status Styles */
+    .status-badge.confirmed {
+      background: linear-gradient(90deg, #56ab2f, #a8e063);
+      color: white;
+    }
+    .status-badge.pending {
+      background: linear-gradient(90deg, #f7b733, #fc4a1a);
+      color: white;
+    }
+    .status-badge.cancelled {
+      background: linear-gradient(90deg, #c94b4b, #4b134f);
+      color: white;
+    }
+  
+    /* General Card Styling */
+    .card {
+      border-radius: 10px;
+    }
+    .card-title {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .list-group-item {
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  </style>
+  
+  
+  
+
+
+
+     <div class="page-section banner-home bg-image mt-5" style="background-image: url({% static 'img/banner.png' %});">
+   
+         <div class="container py-5 py-lg-0">
+           <div class="row align-items-center">
+             <div class="col-lg-4 wow zoomIn">
+               <div class="img-banner d-none d-lg-block">
+                 <img src="{% static 'img/mblpng.png' %}" alt="">
+               </div>
+             </div>
+             <div class="col-lg-8 wow fadeInRight">
+               <h1 class="font-weight-normal mb-3">Get easy access of all features using Sports Unity Web App</h1>
+     
+           </div>
+           </div>
+         </div>
+       </div> <!-- .banner-home -->
+ 
+ 
+   <footer class="page-footer">
+     <div class="container">
+       <div class="row px-md-3">
+         <div class="col-sm-6 col-lg-3 py-3">
+           <h5>Company</h5>
+           <ul class="footer-menu">
+             <li><a href="#">About Us</a></li>
+             <li><a href="#">Career</a></li>
+             <li><a href="#">Editorial Team</a></li>
+             <li><a href="#">Protection</a></li>
+           </ul>
+         </div>
+         <div class="col-sm-6 col-lg-3 py-3">
+           <h5>More</h5>
+           <ul class="footer-menu">
+             <li><a href="#">Terms & Condition</a></li>
+             <li><a href="#">Privacy</a></li>
+             <li><a href="#">Advertise</a></li>
+           
+           </ul>
+         </div>
+         <div class="col-sm-6 col-lg-3 py-3">
+           <h5>Our partner</h5>
+           <ul class="footer-menu">
+             <li><a href="#">Lahore University</a></li>
+             <li><a href="#">ISB university</a></li>
+             <li><a href="#">Riffha university</a></li>
+           </ul>
+         </div>
+         <div class="col-sm-6 col-lg-3 py-3">
+           <h5>Contact</h5>
+           <p class="footer-link mt-2">Lahore</p>
+           <a href="#" class="footer-link">0300-12345678</a>
+           <a href="#" class="footer-link">saad@gmail.com</a>
+ 
+           <h5 class="mt-3">Social Media</h5>
+           <div class="footer-sosmed mt-3">
+             <a href="#" target="_blank"><span class="mai-logo-facebook-f"></span></a>
+             <a href="#" target="_blank"><span class="mai-logo-twitter"></span></a>
+             <a href="#" target="_blank"><span class="mai-logo-google-plus-g"></span></a>
+             <a href="#" target="_blank"><span class="mai-logo-instagram"></span></a>
+             <a href="#" target="_blank"><span class="mai-logo-linkedin"></span></a>
+           </div>
+         </div>
+       </div>
+ 
+       <hr>
+ 
+       <p id="copyright">Copyright &copy; 2024 <a href="" target="_blank"></a>. All right reserved</p>
+     </div>
+   </footer>
+ 
+   <!-- Include your scripts at the end of the body tag -->
+   <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+   <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+   <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+   <script src="{% static 'js/theme.js' %}"></script>
+   <script src="{% static 'DataTables/datatables.min.js' %}"></script>
+ </body>
+ </html>
+ 
